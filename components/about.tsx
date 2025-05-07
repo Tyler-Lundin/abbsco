@@ -59,7 +59,10 @@ export default function About() {
               src="/images/about.png"
               alt="ABBSCO LLC Professional Painting"
               fill
+              priority
               className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              quality={85}
             />
           </div>
         </div>

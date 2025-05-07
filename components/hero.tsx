@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Phone } from "lucide-react"
 
@@ -6,10 +7,16 @@ export default function Hero() {
   return (
     <section className="relative">
       <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-slate-900/70 z-10" />
-      <div
-        className="relative h-[600px] bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/hero.png')" }}
-      >
+      <div className="relative h-[600px]">
+        <Image
+          src="/images/hero.png"
+          alt="Professional Painting Services"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+          quality={90}
+        />
         <div className="container relative z-20 h-full flex flex-col justify-center">
           <div className="max-w-2xl text-white">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">

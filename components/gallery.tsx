@@ -79,7 +79,10 @@ export default function Gallery() {
                           src={image.src || "/placeholder.svg"}
                           alt={image.alt}
                           fill
+                          loading={index < 3 ? "eager" : "lazy"}
                           className="object-cover transition-transform hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          quality={80}
                         />
                         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                           <span className="text-white text-sm font-medium">{image.category}</span>
@@ -90,7 +93,14 @@ export default function Gallery() {
                   <DialogContent className="max-w-4xl p-0 overflow-hidden">
                     <DialogTitle className="sr-only">Image Preview</DialogTitle>
                     <div className="relative h-[80vh]">
-                      <Image src={image.src || "/placeholder.svg"} alt={image.alt} fill className="object-contain" />
+                      <Image
+                        src={image.src || "/placeholder.svg"}
+                        alt={image.alt}
+                        fill
+                        className="object-contain"
+                        sizes="100vw"
+                        quality={90}
+                      />
                     </div>
                   </DialogContent>
                 </Dialog>
