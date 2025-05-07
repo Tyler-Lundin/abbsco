@@ -8,11 +8,12 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
-import { Loader2 } from "lucide-react"
+import { Loader2, CheckCircle2 } from "lucide-react"
 
 export default function CTA() {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,14 +36,95 @@ export default function CTA() {
         title: "Message Sent",
         description: "Thank you for contacting ABBSCO LLC. We'll get back to you shortly.",
       })
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        message: "",
-      })
+      setIsSubmitted(true)
       setIsSubmitting(false)
     }, 1500)
+  }
+
+  if (isSubmitted) {
+    return (
+      <section id="contact" className="container py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight mb-6">Get a Free Quote</h2>
+            <p className="text-slate-700 mb-6">
+              Ready to transform your home or business? Contact ABBSCO LLC today for a free, no-obligation quote on your
+              painting project.
+            </p>
+
+            <div className="bg-slate-50 p-6 rounded-lg mb-8">
+              <h3 className="text-lg font-semibold mb-4">Why Choose ABBSCO LLC?</h3>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold">✓</span>
+                  <span>Over 25 years of professional painting experience</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold">✓</span>
+                  <span>Licensed, bonded, and insured for your protection</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold">✓</span>
+                  <span>EPA Lead-Safe Certified for safe painting practices</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold">✓</span>
+                  <span>5-15 year warranties on exterior painting projects</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold">✓</span>
+                  <span>Attention to detail and superior craftsmanship</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold">✓</span>
+                  <span>Multiple payment methods accepted for your convenience</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Contact Information</h3>
+              <p className="mb-2">
+                <strong>Phone:</strong> (509) 939-6156
+              </p>
+              <p className="mb-2">
+                <strong>Email:</strong> info@abbsco.com
+              </p>
+              <p className="mb-2">
+                <strong>Address:</strong> 505 N Argonne Rd, Spokane Valley, WA 99212
+              </p>
+              <p className="mb-2">
+                <strong>Hours:</strong> Monday-Friday, 9:00 AM - 5:00 PM
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-8 rounded-lg shadow-sm border border-slate-200 flex flex-col items-center justify-center text-center">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
+              <CheckCircle2 className="h-8 w-8 text-green-600" />
+            </div>
+            <h3 className="text-2xl font-semibold mb-4">Thank You!</h3>
+            <p className="text-slate-600 mb-6">
+              Your message has been sent successfully. We'll get back to you shortly to discuss your painting project.
+            </p>
+            <Button
+              onClick={() => {
+                setIsSubmitted(false)
+                setFormData({
+                  name: "",
+                  email: "",
+                  phone: "",
+                  message: "",
+                })
+              }}
+              variant="outline"
+            >
+              Send Another Message
+            </Button>
+          </div>
+        </div>
+      </section>
+    )
   }
 
   return (

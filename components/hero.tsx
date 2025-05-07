@@ -1,21 +1,34 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Phone } from "lucide-react"
+import { useState } from "react"
 
 export default function Hero() {
+  const [isImageLoaded, setIsImageLoaded] = useState(false)
+
   return (
     <section className="relative">
       <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-slate-900/70 z-10" />
       <div className="relative h-[600px]">
+        <div 
+          className={`absolute inset-0 bg-slate-900 transition-opacity duration-1000 ${
+            isImageLoaded ? "opacity-0" : "opacity-100"
+          }`}
+        />
         <Image
           src="/images/hero.png"
           alt="Professional Painting Services"
           fill
           priority
-          className="object-cover"
+          className={`object-cover transition-opacity duration-1000 ${
+            isImageLoaded ? "opacity-100" : "opacity-0"
+          }`}
           sizes="100vw"
           quality={90}
+          onLoad={() => setIsImageLoaded(true)}
         />
         <div className="container relative z-20 h-full flex flex-col justify-center">
           <div className="max-w-2xl text-white">
